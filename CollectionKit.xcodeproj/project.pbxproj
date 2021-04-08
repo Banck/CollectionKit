@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0E3258451F5E23B000D455F8 /* FlowLayoutSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3258441F5E23B000D455F8 /* FlowLayoutSpec.swift */; };
+		9C193CE6261F17F90030B19C /* MultipleStickyLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C193CE5261F17F90030B19C /* MultipleStickyLayout.swift */; };
 		9C727BA6253D903700EFFFD6 /* CollectionAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C727BA5253D903700EFFFD6 /* CollectionAnimatable.swift */; };
 		A3066AAD2176997900467E3C /* BasicProvider+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3066AAC2176997800467E3C /* BasicProvider+Convenience.swift */; };
 		A3066AAF2176997F00467E3C /* ComposedHeaderProvider+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3066AAE2176997F00467E3C /* ComposedHeaderProvider+Convenience.swift */; };
@@ -84,6 +85,7 @@
 		0E3258441F5E23B000D455F8 /* FlowLayoutSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowLayoutSpec.swift; sourceTree = "<group>"; };
 		18407FD826F3703406A838D4 /* Pods_CollectionKitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CollectionKitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		571F2E4FA7747B7E5CAC5A2D /* Pods-CollectionKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollectionKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CollectionKitTests/Pods-CollectionKitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9C193CE5261F17F90030B19C /* MultipleStickyLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleStickyLayout.swift; sourceTree = "<group>"; };
 		9C727BA5253D903700EFFFD6 /* CollectionAnimatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionAnimatable.swift; sourceTree = "<group>"; };
 		A3066AAC2176997800467E3C /* BasicProvider+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BasicProvider+Convenience.swift"; sourceTree = "<group>"; };
 		A3066AAE2176997F00467E3C /* ComposedHeaderProvider+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ComposedHeaderProvider+Convenience.swift"; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				B144CDFF1F4379DA0073CF4E /* ClosureLayout.swift */,
 				A363C56920C955C7009A885F /* LayoutContext.swift */,
 				B1ED75B41F58C95200CB772A /* StickyLayout.swift */,
+				9C193CE5261F17F90030B19C /* MultipleStickyLayout.swift */,
 				B144CE031F437A100073CF4E /* FlowLayout.swift */,
 				B183C11F1F6349B800CEAAE1 /* InsetLayout.swift */,
 				A3299F332064ED690075A137 /* VisibleFrameInsetLayout.swift */,
@@ -588,6 +591,7 @@
 				B1A54FAD1EA3E0ED00A96112 /* UIScrollView+CollectionKit.swift in Sources */,
 				B144CE111F437AAB0073CF4E /* ClosureViewSource.swift in Sources */,
 				B144CE0F1F437A9E0073CF4E /* ClosureDataSource.swift in Sources */,
+				9C193CE6261F17F90030B19C /* MultipleStickyLayout.swift in Sources */,
 				B1B7B05F1E7DAD2700F2483E /* CollectionView.swift in Sources */,
 				B157E51A1F6719F0008AEF83 /* SimpleLayout.swift in Sources */,
 				A3299F342064ED690075A137 /* VisibleFrameInsetLayout.swift in Sources */,
