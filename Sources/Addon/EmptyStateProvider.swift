@@ -20,13 +20,13 @@ public class EmptyStateProvider: ComposedProvider {
     self.emptyStateViewGetter = emptyStateView
     self.contentProvider = content
     super.init(identifier: identifier,
-               layout: RowLayout(emptyStateViewSectionIdentifier).transposed(),
+               layout: RowLayout().transposed(),
                sections: [content])
   }
 
   open override func willReload() {
     contentProvider.willReload()
-    if contentProvider.numberOfItems == 0, sections.first?.identifier != emptyStateViewSectionIdentifier {
+    if contentProvider.realNumberOfItems == 0, sections.first?.identifier != emptyStateViewSectionIdentifier {
       if emptyStateView == nil {
         emptyStateView = emptyStateViewGetter()
       }
@@ -37,7 +37,7 @@ public class EmptyStateProvider: ComposedProvider {
       )
       sections = [viewSection]
       super.willReload()
-    } else if contentProvider.numberOfItems > 0, sections.first?.identifier == emptyStateViewSectionIdentifier {
+    } else if contentProvider.realNumberOfItems > 0, sections.first?.identifier == emptyStateViewSectionIdentifier {
       sections = [contentProvider]
     } else {
       super.willReload()
@@ -47,4 +47,11 @@ public class EmptyStateProvider: ComposedProvider {
   open override func hasReloadable(_ reloadable: CollectionReloadable) -> Bool {
     return super.hasReloadable(reloadable) || contentProvider.hasReloadable(reloadable)
   }
+}
+
+extension Provider {
+    var realNumberOfItems: Int {
+        let numberOfItems = (self as? ComposedProvider)?.sections.reduce(0) { $0 + $1.numberOfItems }
+        return numberOfItems ?? self.numberOfItems
+    }
 }

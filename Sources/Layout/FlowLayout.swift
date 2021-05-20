@@ -42,8 +42,11 @@ public class FlowLayout: VerticalSimpleLayout {
 
   public override func simpleLayout(context: LayoutContext) -> [CGRect] {
     var frames: [CGRect] = []
-
-    let sizes = (0..<context.numberOfItems).map { context.size(at: $0, collectionSize: context.collectionSize) }
+    var sizes: [CGSize] = []
+    (0..<context.numberOfItems).forEach { index in
+        let size = context.size(at: index, collectionSize: .init(width: context.collectionSize.width, height: context.collectionSize.height - sizes.reduce(0) { $0 + $1.height } ))
+        sizes.append(size)
+    }
     let (totalHeight, lineData) = distributeLines(sizes: sizes, maxWidth: context.collectionSize.width)
 
     var (yOffset, spacing) = LayoutHelper.distribute(justifyContent: alignContent,
