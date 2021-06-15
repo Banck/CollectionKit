@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol LayoutableProvider {
-  var layout: Layout { get }
+  var layout: Layout { set get }
   var internalLayout: Layout { get }
   func layoutContext(collectionSize: CGSize) -> LayoutContext
 }
