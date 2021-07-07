@@ -29,6 +29,20 @@ extension Collection {
   }
 }
 
+extension Sequence where Self.Iterator.Element: Hashable {
+    func uniq() -> [Self.Element] {
+        var buffer = [Self.Iterator.Element]()
+        var added = Set<Self.Iterator.Element>()
+        for elem in self {
+            if !added.contains(elem) {
+                buffer.append(elem)
+                added.insert(elem)
+            }
+        }
+        return buffer
+    }
+}
+
 extension CGFloat {
   func clamp(_ minValue: CGFloat, _ maxValue: CGFloat) -> CGFloat {
     return self < minValue ? minValue : (self > maxValue ? maxValue : self)

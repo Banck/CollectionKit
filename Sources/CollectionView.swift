@@ -213,9 +213,15 @@ open class CollectionView: UIScrollView {
         return _generateCell(index: index)
       }
     }
-
-    if !newCells.isEmpty && (visibleCells.filter{type(of: $0) === type(of: newCells.first!)}).count == 0 {
-        newCells.first?.reuseManager?.prepareReuseIfNeeded(type: type(of: newCells.first!))
+    
+    if !newCells.isEmpty {
+      let cellTypes = newCells.map { NSStringFromClass(type(of: $0)) }.uniq()
+      cellTypes.forEach { cellType in
+        if (visibleCells.filter { NSStringFromClass(type(of: $0)) == cellType }).count == 0,
+           let cell = newCells.first(where: { NSStringFromClass(type(of: $0)) == cellType}) {
+          cell.reuseManager?.prepareReuseIfNeeded(type: type(of: cell))
+        }
+      }
     }
     
     for (index, cell) in newCells.enumerated() where subviews.get(index) !== cell {
