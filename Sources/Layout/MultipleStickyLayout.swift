@@ -9,7 +9,7 @@
 import UIKit
 
 public class MultipleStickyLayout: StickyLayout {
-  
+  /*
   public override func visible(in visibleFrame: CGRect) -> (indexes: [Int], frame: CGRect) {
     self.visibleFrame = visibleFrame
     let stickyIndexes = stickyFrames.enumerated().filter { index, stickyFrame in
@@ -23,6 +23,24 @@ public class MultipleStickyLayout: StickyLayout {
           oldVisible.indexes.remove(at: index)
         }
         oldVisible.indexes += [$0.index]
+      }
+    }
+    return oldVisible
+  }*/
+  
+  public override func visibleIndexes(visibleFrame: CGRect) -> [Int] {
+    self.visibleFrame = visibleFrame
+    let stickyIndexes = stickyFrames.enumerated().filter { index, stickyFrame in
+      let previousHeadersHeight = stickyFrames[0..<index].reduce(0) { $0 + $1.frame.height }
+      return stickyFrame.frame.minY < visibleFrame.minY + previousHeadersHeight
+    }.map { $0.element }
+    var oldVisible = rootLayout.visibleIndexes(visibleFrame: visibleFrame)
+    stickyIndexes.forEach {
+      if $0.index >= 0 {
+        if let index = oldVisible.firstIndex(of: $0.index) {
+          oldVisible.remove(at: index)
+        }
+        oldVisible += [$0.index]
       }
     }
     return oldVisible
