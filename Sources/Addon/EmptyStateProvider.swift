@@ -51,7 +51,7 @@ public class EmptyStateProvider: ComposedProvider {
 
 extension Provider {
     var realNumberOfItems: Int {
-        let numberOfItems = (self as? ComposedProvider)?.sections.reduce(0) { $0 + $1.numberOfItems }
+        let numberOfItems = (self as? SectionProvider)?.sections.reduce(0) { $0 + $1.numberOfItems }
         return numberOfItems ?? self.numberOfItems
     }
 }

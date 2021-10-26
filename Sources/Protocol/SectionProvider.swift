@@ -9,6 +9,8 @@
 import Foundation
 
 public protocol SectionProvider: Provider {
+  var sections: [Provider] { get }
+  
   func section(at: Int) -> Provider?
 }
 
