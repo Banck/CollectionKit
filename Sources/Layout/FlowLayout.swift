@@ -43,8 +43,10 @@ public class FlowLayout: VerticalSimpleLayout {
   public override func simpleLayout(context: LayoutContext) -> [CGRect] {
     var frames: [CGRect] = []
     var sizes: [CGSize] = []
+    var calculatedHeight: CGFloat = 0
     (0..<context.numberOfItems).forEach { index in
-        let size = context.size(at: index, collectionSize: .init(width: context.collectionSize.width, height: context.collectionSize.height - sizes.reduce(0) { $0 + $1.height } ))
+        let size = context.size(at: index, collectionSize: .init(width: context.collectionSize.width, height: context.collectionSize.height - calculatedHeight )
+        calculatedHeight += size.height
         sizes.append(size)
     }
     let (totalHeight, lineData) = distributeLines(sizes: sizes, maxWidth: context.collectionSize.width)
