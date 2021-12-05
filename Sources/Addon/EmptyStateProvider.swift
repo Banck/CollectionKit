@@ -13,12 +13,17 @@ public class EmptyStateProvider: ComposedProvider {
   open var emptyStateViewGetter: () -> UIView
   open var contentProvider: Provider
   open var emptyStateViewSectionIdentifier: String = "emptyStateView"
-
+  open var emptyViewSizeStrategy: (width: SimpleViewSizeSource.ViewSizeStrategy,
+                                   height: SimpleViewSizeSource.ViewSizeStrategy)
+  
   public init(identifier: String? = nil,
               emptyStateView: @autoclosure @escaping () -> UIView,
+              emptyViewSizeStrategy: (width: SimpleViewSizeSource.ViewSizeStrategy,
+                                      height: SimpleViewSizeSource.ViewSizeStrategy) = (.fill, .fill),
               content: Provider) {
     self.emptyStateViewGetter = emptyStateView
     self.contentProvider = content
+    self.emptyViewSizeStrategy = emptyViewSizeStrategy
     super.init(identifier: identifier,
                layout: RowLayout().transposed(),
                sections: [content])
@@ -33,7 +38,7 @@ public class EmptyStateProvider: ComposedProvider {
       let viewSection = SimpleViewProvider(
         identifier: "emptyStateView",
         views: [emptyStateView!],
-        sizeStrategy: (.fill, .fill)
+        sizeStrategy: emptyViewSizeStrategy
       )
       sections = [viewSection]
       super.willReload()
