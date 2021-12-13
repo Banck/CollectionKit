@@ -6,7 +6,7 @@
 //  Copyright © 2021 lkzhao. All rights reserved.
 //
 
-import Foundation
+import CoreGraphics
 
 open class HashableSizeSource<Data: Hashable>: ClosureSizeSource<Data> {
     private var hashedSizes: [AnyHashable: CGSize] = [:]
