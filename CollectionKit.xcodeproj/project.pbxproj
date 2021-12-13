@@ -10,6 +10,7 @@
 		0E3258451F5E23B000D455F8 /* FlowLayoutSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3258441F5E23B000D455F8 /* FlowLayoutSpec.swift */; };
 		9C193CE6261F17F90030B19C /* MultipleStickyLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C193CE5261F17F90030B19C /* MultipleStickyLayout.swift */; };
 		9C727BA6253D903700EFFFD6 /* CollectionAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C727BA5253D903700EFFFD6 /* CollectionAnimatable.swift */; };
+		9C8822E1276715D900BAB07F /* HashableSizeSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8822E0276715D900BAB07F /* HashableSizeSource.swift */; };
 		A3066AAD2176997900467E3C /* BasicProvider+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3066AAC2176997800467E3C /* BasicProvider+Convenience.swift */; };
 		A3066AAF2176997F00467E3C /* ComposedHeaderProvider+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3066AAE2176997F00467E3C /* ComposedHeaderProvider+Convenience.swift */; };
 		A3299F342064ED690075A137 /* VisibleFrameInsetLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3299F332064ED690075A137 /* VisibleFrameInsetLayout.swift */; };
@@ -87,6 +88,7 @@
 		571F2E4FA7747B7E5CAC5A2D /* Pods-CollectionKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollectionKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CollectionKitTests/Pods-CollectionKitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9C193CE5261F17F90030B19C /* MultipleStickyLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleStickyLayout.swift; sourceTree = "<group>"; };
 		9C727BA5253D903700EFFFD6 /* CollectionAnimatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionAnimatable.swift; sourceTree = "<group>"; };
+		9C8822E0276715D900BAB07F /* HashableSizeSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashableSizeSource.swift; sourceTree = "<group>"; };
 		A3066AAC2176997800467E3C /* BasicProvider+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BasicProvider+Convenience.swift"; sourceTree = "<group>"; };
 		A3066AAE2176997F00467E3C /* ComposedHeaderProvider+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ComposedHeaderProvider+Convenience.swift"; sourceTree = "<group>"; };
 		A3299F332064ED690075A137 /* VisibleFrameInsetLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibleFrameInsetLayout.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				A39C84992177BF62002084AD /* ClosureSizeSource.swift */,
 				A39C84972177BF49002084AD /* UIImageSizeSource.swift */,
 				A39C849B2177BF8B002084AD /* SimpleViewSizeSource.swift */,
+				9C8822E0276715D900BAB07F /* HashableSizeSource.swift */,
 			);
 			path = SizeSource;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				A3C76C2920D507D6003082BF /* FadeAnimator.swift in Sources */,
 				A3C76C2320D10841003082BF /* ItemProvider.swift in Sources */,
 				B144CE001F4379DA0073CF4E /* ClosureLayout.swift in Sources */,
+				9C8822E1276715D900BAB07F /* HashableSizeSource.swift in Sources */,
 				B1E861F11F21515F00621BA0 /* ViewSource.swift in Sources */,
 				A363C56620C7EA66009A885F /* AnyViewSource.swift in Sources */,
 				B144CE0D1F437A960073CF4E /* ArrayDataSource.swift in Sources */,
