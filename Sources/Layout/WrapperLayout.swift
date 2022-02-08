@@ -9,7 +9,7 @@
 import UIKit
 
 open class WrapperLayout: Layout {
-  var rootLayout: Layout
+  public var rootLayout: Layout
 
   public init(_ rootLayout: Layout) {
     self.rootLayout = rootLayout
