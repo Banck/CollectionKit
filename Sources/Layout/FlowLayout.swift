@@ -40,46 +40,53 @@ public class FlowLayout: VerticalSimpleLayout {
               alignContent: alignContent)
   }
 
-  public override func simpleLayout(context: LayoutContext) -> [CGRect] {
-    var frames: [CGRect] = []
-    var sizes: [CGSize] = []
-    var calculatedHeight: CGFloat = 0
-    (0..<context.numberOfItems).forEach { index in
-        let size = context.size(at: index, collectionSize: .init(width: context.collectionSize.width, height: context.collectionSize.height - calculatedHeight))
-        calculatedHeight += size.height
-        sizes.append(size)
+    public override func simpleLayout(context: LayoutContext) -> [CGRect] {
+        var frames: [CGRect] = []
+        var sizes: [CGSize] = []
+        var calculatedHeight: CGFloat = 0
+        (0..<context.numberOfItems).forEach { index in
+            let size = context.size(at: index, collectionSize: .init(width: context.collectionSize.width, height: context.collectionSize.height - calculatedHeight))
+            calculatedHeight += size.height
+            sizes.append(size)
+        }
+        let (totalHeight, lineData) = distributeLines(sizes: sizes, maxWidth: context.collectionSize.width)
+
+        var (yOffset, spacing) = LayoutHelper.distribute(justifyContent: alignContent,
+                                                         maxPrimary: context.collectionSize.height,
+                                                         totalPrimary: totalHeight,
+                                                         minimunSpacing: lineSpacing,
+                                                         numberOfItems: lineData.count)
+
+        var index = 0
+        lineData.enumerated().forEach { offset, data in
+            let (lineSize, count) = data
+            if
+                offset > 0,
+                let previousLineSize = lineData.get(offset - 1)?.lineSize,
+                previousLineSize.height > 0 && lineSize.height > 0
+            {
+                yOffset += spacing
+            }
+            let (xOffset, lineInteritemSpacing) =
+            LayoutHelper.distribute(justifyContent: justifyContent,
+                                    maxPrimary: context.collectionSize.width,
+                                    totalPrimary: lineSize.width,
+                                    minimunSpacing: interitemSpacing,
+                                    numberOfItems: count)
+
+            let lineFrames = LayoutHelper.alignItem(alignItems: alignItems,
+                                                    startingPrimaryOffset: xOffset,
+                                                    spacing: lineInteritemSpacing,
+                                                    sizes: sizes[index..<(index+count)],
+                                                    secondaryRange: yOffset...(yOffset + lineSize.height))
+
+            frames.append(contentsOf: lineFrames)
+
+            yOffset += lineSize.height
+            index += count
+        }
+        return frames
     }
-    let (totalHeight, lineData) = distributeLines(sizes: sizes, maxWidth: context.collectionSize.width)
-
-    var (yOffset, spacing) = LayoutHelper.distribute(justifyContent: alignContent,
-                                                     maxPrimary: context.collectionSize.height,
-                                                     totalPrimary: totalHeight,
-                                                     minimunSpacing: lineSpacing,
-                                                     numberOfItems: lineData.count)
-
-    var index = 0
-    for (lineSize, count) in lineData {
-      let (xOffset, lineInteritemSpacing) =
-        LayoutHelper.distribute(justifyContent: justifyContent,
-                                maxPrimary: context.collectionSize.width,
-                                totalPrimary: lineSize.width,
-                                minimunSpacing: interitemSpacing,
-                                numberOfItems: count)
-
-      let lineFrames = LayoutHelper.alignItem(alignItems: alignItems,
-                                              startingPrimaryOffset: xOffset,
-                                              spacing: lineInteritemSpacing,
-                                              sizes: sizes[index..<(index+count)],
-                                              secondaryRange: yOffset...(yOffset + lineSize.height))
-
-      frames.append(contentsOf: lineFrames)
-
-      yOffset += lineSize.height + spacing
-      index += count
-    }
-
-    return frames
-  }
 
   func distributeLines(sizes: [CGSize], maxWidth: CGFloat) ->
     (totalHeight: CGFloat, lineData: [(lineSize: CGSize, count: Int)]) {
