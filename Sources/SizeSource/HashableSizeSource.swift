@@ -9,14 +9,14 @@
 import CoreGraphics
 
 open class HashableSizeSource<Data: Hashable>: ClosureSizeSource<Data> {
-    private var hashedSizes: [AnyHashable: CGSize] = [:]
-    
+    private var hashedSizes: [Int: CGSize] = [:]
+
     open override func size(at index: Int, data: Data, collectionSize: CGSize) -> CGSize {
-        if let size = hashedSizes[data] {
+        if let size = hashedSizes[data.hashValue] {
             return size
         } else {
             let size = super.size(at: index, data: data, collectionSize: collectionSize)
-            hashedSizes[data] = size
+            hashedSizes[data.hashValue] = size
             return size
         }
     }
